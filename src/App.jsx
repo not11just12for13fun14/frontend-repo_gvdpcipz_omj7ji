@@ -1,26 +1,35 @@
-import { useState } from 'react'
+import React from 'react'
+import Hero from './components/Hero'
+import Stats from './components/Stats'
+import HRForm from './components/HRForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const handleAnalyze = (payload) => {
+    console.log('Form submitted:', payload)
+    // Placeholder for future backend call
+    // fetch(`${import.meta.env.VITE_BACKEND_URL}/analyze`, { method: 'POST', body: JSON.stringify(payload) })
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-100 text-gray-800">
+      <Hero />
+      <main className="relative z-20 mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-12">
+        <Stats />
+
+        <section className="mt-8 sm:mt-12">
+          <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6 sm:p-8">
+            <div className="mb-6">
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-800">Isi Form</h2>
+              <p className="text-sm text-gray-500">Lengkapi detail berikut untuk memulai analisis CV secara otomatis.</p>
+            </div>
+            <HRForm onSubmit={handleAnalyze} />
+          </div>
+        </section>
+      </main>
+
+      <footer className="py-8 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} HR Dashboard • Dibuat dengan gaya modern putih–abu
+      </footer>
     </div>
   )
 }
